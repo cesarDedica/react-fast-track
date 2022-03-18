@@ -1,4 +1,4 @@
-const Title = ({text="Encabezado"}) => {
+const Title = ({text="Hi!"}) => {
   return (<h1>{text}</h1>);
 }
 
