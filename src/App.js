@@ -1,6 +1,7 @@
 import './App.css';
 import Title from "./components/Title";
-import List from "./components/List";
+import ListContainer from "./components/ListContainer";
+import {useState} from "react";
 
 const moviesData = [
   {
@@ -25,17 +26,22 @@ const moviesData = [
   }
 ];
 
+const setType = (type, setListType) => {
+  const updatedType = type === 'ol' ? 'ul' : 'ol';
+  setListType(updatedType);
+}
+
 function App() {
+
+  const [listType, setListType] = useState('ol');
+
   return (
     <div className="App">
       <Title text="My Favorite Movies"/>
-      <List listType='ol'>
-        {
-          moviesData.map(movie => {
-            return <li>{movie.title}. - {movie.votes} Votes</li>
-          })
-        }
-      </List>
+      <ListContainer listType={listType} listData={moviesData}/>
+      <button onClick={() => {
+        setType(listType, setListType);
+      }}>Click me! {listType}</button>
     </div>
   );
 }
